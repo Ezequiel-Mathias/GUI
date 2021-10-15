@@ -1,96 +1,63 @@
 package br.senai.sp.jandira.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Tela {
+	String nome;
 	
 	
 	public void criarTela(){
 	JFrame minhaTela = new JFrame ();
 	minhaTela.setSize(500, 500);
 	minhaTela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	minhaTela.setTitle("Minha primeira janela caraiou");
+	minhaTela.setTitle("exercicio GUI ");
 	minhaTela.setLayout(null);
 	
 	//Criar os componetes da tela 
 	JLabel lblIdade = new JLabel();
-	lblIdade.setText("sua idade é ");
+	lblIdade.setText("olá ");
 	minhaTela.getContentPane().add(lblIdade);
 	lblIdade.setBounds(20, 60, 150, 100);
 	
 	JButton botao = new JButton();
-	botao.setText("verificar");
+	botao.setText("ok");
 	minhaTela.getContentPane().add(botao);
 	botao.setBounds(60, 60, 100, 30);
 	
 	JTextField texto = new JTextField();
-	texto.setText("digite aqui");
+	texto.setText("");
 	minhaTela.getContentPane().add(texto);
 	texto.setBounds(20, 20, 100, 30);
 	
 	//Listernes de eventos
 	
-	texto.addMouseListener(new MouseListener() {
+	//Eventos do botão 
+    
+	botao.addActionListener(new ActionListener() {
 		
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			System.out.println("soltei ");
-		}
 		
-		@Override
-		public void mousePressed(MouseEvent e) {
-			System.out.println("cliquei ");
+		public void actionPerformed(ActionEvent e) {
 			
-		}
-		
-		@Override
-		public void mouseExited(MouseEvent e) {
-			System.out.println("sai ");
+			String nome = texto.getText();
+			lblIdade.setText("ola " + nome);			
 			
-		}
-		
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			System.out.println("cheguei ");
-			
-		}
-		
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			System.out.println("cliquei ");
-			
+			int valor = Integer.parseInt(nome);
+			int resultado = valor * 15;
+			lblIdade.setText(String.valueOf(resultado));
 		}
 	});
 	
-	texto.addKeyListener(new KeyListener() {
-		
-		@Override
-		public void keyTyped(KeyEvent e) {
-			
-			
-		}
-		
-		@Override
-		public void keyReleased(KeyEvent e) {
-		
-			
-		}
-		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			System.out.println(e.getKeyChar());
-			System.out.println(e.getKeyCode());
-			
-		}
-	});
 	
 	minhaTela.setVisible(true);
 	}
